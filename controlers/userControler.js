@@ -3,7 +3,7 @@ import userModel from "../models/userModel.js"
 // login callback
 const loginControler = async (req, res) => {
     try {
-        const [email, password] = new userModel(req.body)
+        const { email, password } = req.body;
         const user = await userModel.findOne({ email, password })
         if (!user) {
             return res.status(404).send("User not found")

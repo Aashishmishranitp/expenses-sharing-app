@@ -4,9 +4,10 @@ import morgan  from 'morgan';
 import dotenv from 'dotenv'
 import connectDB from './config/connectDB.js';
 // import colors from 'colors'
-// import { connect } from 'mongoose'
-// import connectDB from './config/connectDB.js'
 
+
+
+import router from './routes/userRoute.js';
 
 
 
@@ -29,7 +30,7 @@ app.use(cors())
 
 
 // routes
-app.use('/api/v1/users',require('./routes/userRoute.js') )
+app.use('/api/v1/users', router )
 
 // port 
 const PORT = 8080 || process.env.PORT

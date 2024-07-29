@@ -1,5 +1,6 @@
 import express from 'express'
-import { loginControler, registeControler } from '../controllers/userControler.js';
+// import { loginControler, registeControler } from '../controllers/userControler.js';
+import { loginControler,registeControler } from '../controlers/userControler.js';
 
 // router Object
 

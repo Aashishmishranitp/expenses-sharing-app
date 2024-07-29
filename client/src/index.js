@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 import HomePage from './Pages/HomePage.js'
 import Layout from './Components/Layouts/Layout.js'
-import LoginUser, { loginAction } from './Pages/Login.js'
+import LoginUser from './Pages/Login.js'
 // import SignUp from './Pages/SignUp.js'
 import SignUp from './Pages/SignUp.js'
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<HomePage />} />
       <Route path='/login' element={<LoginUser/>}/>
-      <Route path='/signup' element={<SignUp/>} action={loginAction} />
+      <Route path='/signup' element={<SignUp/>} />
     </Route>
 
   )

@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:8080/api/v1",
+"proxy": "http://localhost:8080/api/v1/users",
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.19.3",
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

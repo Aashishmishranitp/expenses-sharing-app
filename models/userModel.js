@@ -1,32 +1,27 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
-
-// schema design
-
+// Schema design
 const userSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required: [true,"name is required"],
-
+    name: {
+        type: String,
+        required: [true, "Name is required"],
     },
-    email:{
-        type:String,
-        required:[true,"Email is required and should be unique"],
-        unique:true
+    email: {
+        type: String,
+        required: [true, "Email is required"],
+        unique: true,
     },
-    monNo:{
-        type:Number,
-        required:true,
-
+    phoneNo: { // Changed from monNo to phoneNo for clarity
+        type: Number,
+        required: [true, "Phone number is required"],
     },
     password: {
-        type:String,
-        required:[true,"password is required"]
+        type: String,
+        required: [true, "Password is required"],
     }
-},{timestamps:true})
+}, { timestamps: true });
 
-// export 
+// Export
+const userModel = mongoose.model('User', userSchema); // Changed model name to 'User' for better convention
 
-const userModel = mongoose.model('user',userSchema)
-
-export default userModel
+export default userModel;
