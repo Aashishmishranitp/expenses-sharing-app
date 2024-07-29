@@ -6,8 +6,9 @@ import connectDB from './config/connectDB.js';
 // import colors from 'colors'
 
 
-
+// routes import
 import router from './routes/userRoute.js';
+import trouter from './routes/expenseRoute.js';
 
 
 
@@ -30,7 +31,11 @@ app.use(cors())
 
 
 // routes
+//user routes
 app.use('/api/v1/users', router )
+
+// transection route
+app.use("api/v1/transection",trouter )
 
 // port 
 const PORT = 8080 || process.env.PORT
