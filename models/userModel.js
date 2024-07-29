@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema({
         required:[true,"Email is required and should be unique"],
         unique:true
     },
+    monNo:{
+        type:Number,
+        required:true,
+
+    },
     password: {
         type:String,
         required:[true,"password is required"]
