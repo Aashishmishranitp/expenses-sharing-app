@@ -10,6 +10,6 @@ const balenceSchem = new mongoose.Schema({
 
 })
 
-const balenceModel = new mongoose.Schema('Balence',balenceSchem);
+const balenceModel = new mongoose.model('Balence',balenceSchem);
 
 export default balenceModel;

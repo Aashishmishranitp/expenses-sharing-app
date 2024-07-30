@@ -1,35 +1,76 @@
 import expenseModel from "../models/expenseModel.js"
+import balenceModel from "../models/balenceModel.js";
 
 
-
-const getAllTransation = async(req,res) => {
-
-    try {
-        const transtation = await transectionModel.find({})
-        res.status(200).json(transtation)
-    } catch (error) {
-        console.log(error)
-        res.status(500).json(error)
-        
-    }
-
-}
-
-const addTransction =async(req,res) => {
-    try {
-        const newTrasection = new transectionModel(req.body);
-
-        await newTrasection.save()
-        res.status(201).send("Transection Created")
-        
-    } catch (error) {
-        console.log(error)
-        res.status(400).json(error)
-
-        
-    }
+// for adding a new expense
+const addExpense = async (req, res) => {
+    const { group_id, description, total_amount, paid_by, split_method, splits, participants } = req.body;
   
-}
+    const expense = new expenseModel({ group_id, description, total_amount, paid_by, split_method, splits, participants });
+  
+    try {
+      const newExpense = await expense.save();
+      await updateBalances(newExpense); // Update balances after creating an expense
+      res.status(201).json(newExpense);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  };
 
+// for getting all expense 
 
-export {getAllTransation,addTransction}
+const getAllExpenses = async (req, res) => {
+    try {
+      const expenses = await expenseModel.find()
+                                    .populate('paid_by')
+                                    .populate('splits.user_id')
+                                    .populate('participants.user_id');
+      res.json(expenses);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  
+
+  // for indivisual user
+  const getUserExpenses = async (req, res) => {
+    const userId = req.params.userId;
+  
+    try {
+      const expenses = await expenseModel.find({ 'participants.user_id': userId })
+                                    .populate('paid_by')
+                                    .populate('splits.user_id')
+                                    .populate('participants.user_id');
+      res.json(expenses);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  
+
+  const downloadBalanceSheet = async (req, res) => {
+    const groupId = req.query.groupId;
+  
+    try {
+      const balances = await balenceModel.find({ group_id: groupId })
+                                    .populate('user_id')
+                                    .populate('balances.with_user_id');
+      const balanceSheet = balances.map(balance => {
+        return {
+          user: balance.user_id.name,
+          balances: balance.balances.map(b => ({
+            withUser: b.with_user_id.name,
+            balance: b.balance
+          }))
+        };
+      });
+  
+      // Logic to generate a downloadable file (e.g., CSV)
+      res.json(balanceSheet); // For simplicity, returning JSON
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  
+    
+export {getAllExpenses,addExpense,getUserExpenses,downloadBalanceSheet}

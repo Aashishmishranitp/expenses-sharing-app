@@ -9,6 +9,7 @@ import connectDB from './config/connectDB.js';
 // routes import
 import router from './routes/userRoute.js';
 import trouter from './routes/expenseRoute.js';
+import grpRouter from './routes/groupeRoute.js';
 
 
 
@@ -33,9 +34,12 @@ app.use(cors())
 // routes
 //user routes
 app.use('/api/v1/users', router )
-
 // transection route
-app.use("api/v1/transection",trouter )
+app.use("/api/v1/expense",trouter)
+// group route
+app.use("/api/v1/groups",grpRouter)
+
+
 
 // port 
 const PORT = 8080 || process.env.PORT

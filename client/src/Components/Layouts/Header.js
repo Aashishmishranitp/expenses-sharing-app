@@ -14,22 +14,22 @@ const Header = () => {
                             <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                                 <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                     <Link to="/" className="flex items-center">
-                                        Pages
+                                        Home
                                     </Link>
                                 </li>
                                 <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    <Link to="/user" className="flex items-center">
-                                        Account
+                                    <Link to="/expenses/user/:userId" className="flex items-center">
+                                        your expenses
                                     </Link>
                                 </li>
                                 <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    <Link to="#" className="flex items-center">
-                                        Blocks
+                                    <Link to="/expenses/all" className="flex items-center">
+                                       All expenses
                                     </Link>
                                 </li>
                                 <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    <Link to="#" className="flex items-center">
-                                        Docs
+                                    <Link to="/balence-sheet" className="flex items-center">
+                                        Balence Sheet
                                     </Link>
                                 </li>
                             </ul>

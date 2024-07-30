@@ -13,7 +13,7 @@ const SignUp = () => {
   const submitHandler = async (values) => {
     try {
       setLoading(true);
-      await axios.post('/register', values);
+      await axios.post('/users/register', values);
       message.success('Registration Successful');
       setLoading(false);
       navigate('/login');
