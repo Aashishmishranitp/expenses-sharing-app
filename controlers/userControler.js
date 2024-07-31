@@ -40,7 +40,7 @@ const registeControler = async(req,res) => {
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select('-password'); // Exclude the password field for security
+    const users = await userModel.find().select('-password'); // Exclude the password field for security
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching users:', error);

@@ -13,5 +13,5 @@ router.post('/login',loginControler)
 router.post('/register',registeControler)
 
 // router for all users
-router.get('./all-user',getAllUsers)
+router.get('/all-user',getAllUsers)
 export default router

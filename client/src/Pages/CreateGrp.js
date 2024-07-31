@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -10,7 +11,7 @@ const CreateGroup = () => {
 
   useEffect(() => {
     // Fetch users from the backend
-    axios.get('/users/all-users')
+    axios.get('/users/all-user')
       .then(response => setUsers(response.data))
       .catch(error => console.error('Error fetching users:', error));
   }, []);
@@ -22,19 +23,22 @@ const CreateGroup = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const groupData = {
-      name: groupName,
+      group_name: groupName,
       members: selectedUsers
     };
+    console.log(groupData);
 
-    axios.post('/api/groups', groupData)
-      .then(response => {
-        console.log('Group created successfully:', response.data);
-        navigate('/groups'); // Redirect to groups page after creation
-      })
-      .catch(error => console.error('Error creating group:', error));
+    try {
+      await axios.post('/groups/create', groupData);
+      message.success('Group created successfully');
+      navigate('/'); // Redirect to homepage or groups page after creation
+    } catch (error) {
+      message.error('Something went wrong');
+      console.error('Error creating group:', error);
+    }
   };
 
   return (
@@ -59,7 +63,7 @@ const CreateGroup = () => {
             onChange={handleUserSelection}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           >
-            <option value="" disabled selected>Select members</option>
+            <option value="" disabled defaultValue>Select members</option>
             {users.map(user => (
               <option key={user._id} value={user._id}>{user.name}</option>
             ))}

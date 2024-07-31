@@ -7,7 +7,7 @@ const grpRouter = express.Router();
 
 //routers
 // router for grp creation
-grpRouter.get('/create',createGroup)
+grpRouter.post('/create',createGroup)
 
 //router for get grp
 grpRouter.get('/get',getGroups);
