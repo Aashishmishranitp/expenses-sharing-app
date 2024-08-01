@@ -27,20 +27,20 @@ Ensure you have the following installed:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/daily-expenses-sharing-app.git
+   git clone https://github.com/Aashishmishranitp/expenses-sharing-app.git
    cd daily-expenses-sharing-app
    
 2. **Install Dependencies:**
    ```bash
    npm install
-3. **Install all Packages in Client folder**
+3. **Install all Packages in the Client folder**
    ```bash
    cd client
    npm install
    npm install -D tailwindcss
    npx tailwindcss init
    npm i react react-dom axio react-router-dom antd
-4. **Install packages for backend**
+4. **Install packages for the backend**
    ```bash
    cd ..
    npm install colors@^1.4.0 concurrently@^8.2.2 cors@^2.8.5 dotenv@^16.4.5 express@^4.19.2 mongoose@^8.5.1 morgan@^1.10.0 nodemon@^3.1.4
